@@ -1,59 +1,81 @@
-import { useState } from "react";
+/* ============================================================
+   File: pages/Dashboard.jsx
+   Author: Akin S. Sokpah
+   Description:
+   Professional dashboard entry page
+   ============================================================ */
 
 const WHATSAPP_NUMBER = "231777789356";
 
+/* ===================== UTILITIES ===================== */
+
+function openWhatsApp(message) {
+  const encodedMessage = encodeURIComponent(message);
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  window.open(url, "_blank");
+}
+
+function generateRequestId() {
+  return (
+    "REQ-" +
+    Math.random().toString(36).substring(2, 10).toUpperCase()
+  );
+}
+
+/* ===================== COMPONENT ===================== */
+
 export default function Dashboard() {
-  const [service, setService] = useState("");
-  const [details, setDetails] = useState("");
-
-  function openWhatsApp(message) {
-    const encodedMessage = encodeURIComponent(message);
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    window.open(url, "_blank");
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const requestId =
-      "REQ-" + Math.random().toString(36).substring(2, 10).toUpperCase();
-
-    const message = `
-Hello Akin Sokpah 👋
-
-📌 Request ID: ${requestId}
-🛠 Service: ${service}
-📝 Details: ${details}
-
-Please respond when available.
-`;
-
-    openWhatsApp(message);
-  }
+  const requestId = generateRequestId();
 
   return (
-    <section className="dashboard">
-      <h1>Client Dashboard</h1>
-      <p>Request a website, app, or consultation</p>
+    <div className="page">
+      <h1>Dashboard</h1>
+      <p>
+        Welcome to your service dashboard. From here you can
+        request development services, AI solutions, and technical
+        consulting.
+      </p>
 
-      <form onSubmit={handleSubmit} className="dashboard-form">
-        <input
-          type="text"
-          placeholder="Service needed (Website, App, AI, etc.)"
-          value={service}
-          onChange={(e) => setService(e.target.value)}
-          required
-        />
+      {/* SERVICE CARD */}
+      <div className="form-card">
+        <h2>Request a Service</h2>
 
-        <textarea
-          placeholder="Describe your project..."
-          value={details}
-          onChange={(e) => setDetails(e.target.value)}
-          required
-        />
+        <label>Service Type</label>
+        <select>
+          <option>Web Development</option>
+          <option>Web Application</option>
+          <option>AI Solutions</option>
+          <option>Dashboard System</option>
+          <option>Consulting</option>
+        </select>
 
-        <button type="submit">Send Request via WhatsApp</button>
-      </form>
-    </section>
+        <label>Describe your request</label>
+        <textarea placeholder="Explain what you want to build..." />
+
+        <button
+          className="btn-primary"
+          onClick={() =>
+            openWhatsApp(
+              `Hello Akin, I want to request a service.\nRequest ID: ${requestId}`
+            )
+          }
+        >
+          Send Request on WhatsApp
+        </button>
+      </div>
+
+      {/* INFO CARD */}
+      <div className="payment-card">
+        <h3>How it works</h3>
+        <p>
+          After sending your request, you’ll receive a response
+          with pricing, timeline, and next steps.
+        </p>
+        <p className="payment-note">
+          All projects are handled professionally with clear
+          communication and transparency.
+        </p>
+      </div>
+    </div>
   );
 }
