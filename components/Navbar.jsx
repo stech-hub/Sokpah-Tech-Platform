@@ -1,55 +1,34 @@
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        {/* LOGO */}
-        <a href="/" className="brand">
-          Akin<span>S.</span>
-        </a>
+    <header className="navbar">
+      <div className="logo">AkinS<span>.</span></div>
 
-        {/* DESKTOP LINKS */}
-        <div className="navbar-links desktop">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/projects">Projects</a>
-          <a href="/dashboard">Dashboard</a>
-          <a href="/support">Support</a>
-          <a href="/contact" className="hire">
-            Hire Me
-          </a>
-        </div>
+      <button className="menu-btn" onClick={() => setOpen(!open)}>
+        ☰
+      </button>
 
-        {/* MOBILE BUTTON */}
-        <button
-          className="menu-btn"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* MOBILE MENU */}
       {open && (
-        <div className="mobile-menu">
-          <a onClick={() => setOpen(false)} href="/">Home</a>
-          <a onClick={() => setOpen(false)} href="/about">About</a>
-          <a onClick={() => setOpen(false)} href="/projects">Projects</a>
-          <a onClick={() => setOpen(false)} href="/dashboard">Dashboard</a>
-          <a onClick={() => setOpen(false)} href="/support">Support Center</a>
+        <nav className="mobile-menu">
+          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+          <Link href="/about" onClick={() => setOpen(false)}>About</Link>
+          <Link href="/projects" onClick={() => setOpen(false)}>Projects</Link>
+          <Link href="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
+          <Link href="/support" onClick={() => setOpen(false)}>Support Center</Link>
+
           <a
-            onClick={() => setOpen(false)}
             href="https://wa.me/231777789356"
-            className="mobile-hire"
+            className="whatsapp-btn"
+            target="_blank"
           >
             Hire Me on WhatsApp
           </a>
-        </div>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 }
