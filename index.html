@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ======================================================
+       BASIC META
+       ====================================================== -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Akin S. Sokpah | Founder • Developer • Innovator</title>
+
+  <!-- ======================================================
+       PRIMARY SEO
+       ====================================================== -->
+  <meta name="description" content="Official website of Akin S. Sokpah, Liberian tech founder, software developer, and AI innovator. Book services, request websites, and support technology growth." />
+  <meta name="keywords" content="Akin Sokpah, Liberia developer, website developer Liberia, AI developer, tech founder Africa" />
+  <meta name="author" content="Akin S. Sokpah" />
+
+  <!-- ======================================================
+       CANONICAL
+       ====================================================== -->
+  <link rel="canonical" href="https://YOUR_GITHUB_USERNAME.github.io/akin-sokpah-website/" />
+
+  <!-- ======================================================
+       OPEN GRAPH (FACEBOOK, WHATSAPP)
+       ====================================================== -->
+  <meta property="og:title" content="Akin S. Sokpah | Official Founder Website" />
+  <meta property="og:description" content="Founder of digital platforms, AI systems, and mobile applications. Hire or support Akin S. Sokpah." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://YOUR_GITHUB_USERNAME.github.io/akin-sokpah-website/" />
+  <meta property="og:image" content="./assets/og-image.png" />
+
+  <!-- ======================================================
+       TWITTER CARD
+       ====================================================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Akin S. Sokpah | Tech Founder" />
+  <meta name="twitter:description" content="Building impactful technology solutions from Liberia to the world." />
+  <meta name="twitter:image" content="./assets/og-image.png" />
+
+  <!-- ======================================================
+       FAVICONS
+       ====================================================== -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- ======================================================
+       THEME COLOR
+       ====================================================== -->
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- ======================================================
+       PRECONNECT / PERFORMANCE
+       ====================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- ======================================================
+       FONT LOADING
+       ====================================================== -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ======================================================
+       CSS ENTRY (VITE)
+       ====================================================== -->
+  <link rel="stylesheet" href="/src/index.css" />
+
+  <!-- ======================================================
+       GITHUB PAGES SPA FIX
+       ====================================================== -->
+  <script>
+    (function () {
+      const path = window.location.pathname;
+      if (path !== "/" && !path.includes(".")) {
+        sessionStorage.setItem("redirect", path);
+        window.location.replace("/");
+      }
+    })();
+  </script>
+
+  <!-- ======================================================
+       SECURITY HEADERS (STATIC SAFE)
+       ====================================================== -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    img-src 'self' data:;
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com;
+    connect-src *;
+  " />
+
+  <!-- ======================================================
+       ACCESSIBILITY
+       ====================================================== -->
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- ======================================================
+       ANALYTICS PLACEHOLDER
+       ====================================================== -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+  -->
+
+  <!-- ======================================================
+       PWA PLACEHOLDER
+       ====================================================== -->
+  <!--
+  <link rel="manifest" href="/manifest.json" />
+  -->
+</head>
+
+<body class="font-inter bg-gray-50 text-gray-900">
+
+  <!-- ======================================================
+       NOSCRIPT WARNING
+       ====================================================== -->
+  <noscript>
+    <div style="padding:20px;background:#111;color:#fff;text-align:center;">
+      This website requires JavaScript to function properly.
+      Please enable JavaScript.
+    </div>
+  </noscript>
+
+  <!-- ======================================================
+       ROOT APP CONTAINER
+       ====================================================== -->
+  <div id="root"></div>
+
+  <!-- ======================================================
+       SPA REDIRECT FIX (AFTER LOAD)
+       ====================================================== -->
+  <script>
+    (function () {
+      const redirect = sessionStorage.getItem("redirect");
+      if (redirect) {
+        sessionStorage.removeItem("redirect");
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
+
+  <!-- ======================================================
+       MAIN ENTRY (VITE)
+       ====================================================== -->
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- ======================================================
+       WHATSAPP QUICK CHAT FLOAT (OPTIONAL)
+       ====================================================== -->
+  <a
+    href="https://wa.me/231777789356"
+    target="_blank"
+    aria-label="Chat on WhatsApp"
+    style="
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 9999px;
+      font-weight: bold;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 9999;
+      text-decoration: none;
+    "
+  >
+    WhatsApp
+  </a>
+
+  <!-- ======================================================
+       FOOTER FALLBACK (NO JS)
+       ====================================================== -->
+  <footer style="display:none">
+    <p>Akin S. Sokpah — Official Website</p>
+  </footer>
+
+</body>
+</html>
