@@ -1,64 +1,167 @@
+import { useState } from "react";
+
+/* ============================================================
+   CONFIG
+   ============================================================ */
+
 const WHATSAPP_NUMBER = "231777789356";
 
+/* ============================================================
+   UTILITY
+   ============================================================ */
+
 function openWhatsApp(message) {
-  const encoded = encodeURIComponent(message);
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+  const encodedMessage = encodeURIComponent(message);
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
   window.open(url, "_blank");
 }
 
+/* ============================================================
+   DASHBOARD PAGE
+   ============================================================ */
+
 export default function Dashboard() {
+  const [service, setService] = useState("Website Development");
+  const [message, setMessage] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!message.trim()) {
+      alert("Please describe your request.");
+      return;
+    }
+
+    const finalMessage = `
+SERVICE REQUEST
+---------------------
+Service: ${service}
+
+Details:
+${message}
+
+From: Website Dashboard
+    `;
+
+    openWhatsApp(finalMessage);
+  }
+
   return (
-    <section className="dashboard">
-      <header className="dashboard-header">
+    <main className="page">
+      {/* ================= HEADER ================= */}
+      <section style={{ marginBottom: "40px" }}>
         <h1>Dashboard</h1>
         <p>
-          Manage your service requests and start new projects with
-          confidence.
+          Welcome to your service dashboard. From here you can request
+          development services, explore products, and contact me directly.
         </p>
-      </header>
+      </section>
 
-      {/* REQUEST CARD */}
-      <div className="card">
-        <h2>Request a Service</h2>
+      {/* ================= REQUEST SERVICE ================= */}
+      <section className="form-card">
+        <h2 style={{ marginBottom: "20px" }}>Request a Service</h2>
 
-        <div className="form-group">
+        <form onSubmit={handleSubmit}>
           <label>Service Type</label>
-          <select>
-            <option>Web Development</option>
+          <select
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+          >
+            <option>Website Development</option>
             <option>Web Application</option>
+            <option>Mobile App Development</option>
             <option>AI Solutions</option>
             <option>Dashboard System</option>
             <option>Consulting</option>
-            <option>Training</option>
           </select>
-        </div>
 
-        <div className="form-group">
           <label>Describe your request</label>
-          <textarea placeholder="Tell me what you want to build..." />
+          <textarea
+            placeholder="Tell me what you want to build..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+
+          <button type="submit" className="btn-primary">
+            Send Request on WhatsApp
+          </button>
+        </form>
+      </section>
+
+      {/* ================= PRODUCTS ================= */}
+      <section className="form-card">
+        <h2 style={{ marginBottom: "20px" }}>My Products</h2>
+
+        <div style={{ display: "grid", gap: "20px" }}>
+          {/* PRODUCT 1 */}
+          <div className="payment-card">
+            <h3>BioNurse App</h3>
+            <p>
+              A healthcare-focused mobile application designed to support
+              nursing and medical workflows.
+            </p>
+
+            <a
+              href="https://github.com/stech-hub/bionurseapk-website/releases/download/v1/myapp.apk"
+              target="_blank"
+              className="btn-outline"
+            >
+              Download APK
+            </a>
+          </div>
+
+          {/* PRODUCT 2 */}
+          <div className="payment-card">
+            <h3>Full Task AI Platform</h3>
+            <p>
+              A web-based AI-powered task and productivity platform built for
+              automation and efficiency.
+            </p>
+
+            <a
+              href="https://full-task-ai.vercel.app/"
+              target="_blank"
+              className="btn-outline"
+            >
+              Visit Website
+            </a>
+          </div>
+
+          {/* PRODUCT 3 */}
+          <div className="payment-card">
+            <h3>Custom Websites & Dashboards</h3>
+            <p>
+              I build modern websites, admin dashboards, and systems tailored
+              to your business or startup.
+            </p>
+
+            <button
+              className="btn-primary"
+              onClick={() =>
+                openWhatsApp(
+                  "Hello Akin, I want to order a custom website or dashboard."
+                )
+              }
+            >
+              Order Now
+            </button>
+          </div>
         </div>
+      </section>
 
-        <button
-          className="btn-primary full"
-          onClick={() =>
-            openWhatsApp(
-              "Hello Akin, I want to request a service."
-            )
-          }
-        >
-          Send Request via WhatsApp
-        </button>
-      </div>
-
-      {/* INFO CARD */}
-      <div className="card info">
-        <h3>How it works</h3>
-        <ul>
-          <li>✔ Submit your request</li>
-          <li>✔ Get pricing & timeline</li>
-          <li>✔ Start your project</li>
-        </ul>
-      </div>
-    </section>
+      {/* ================= HOW IT WORKS ================= */}
+      <section className="form-card">
+        <h2>How It Works</h2>
+        <p>
+          1. Submit your request through this dashboard.
+          <br />
+          2. You’ll receive a response on WhatsApp with pricing and timeline.
+          <br />
+          3. Development starts after agreement.
+          <br />
+          4. Delivery with support and revisions.
+        </p>
+      </section>
+    </main>
   );
 }
